@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   Navbar,
   Button,
@@ -16,12 +18,12 @@ import {
 } from '@heroicons/react/24/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-function NavItem({ children }) {
+function NavItem({ href, children }) {
   return (
     <li>
       <Typography
         as='a'
-        href='#'
+        href={href}
         variant='paragraph'
         className='flex items-center gap-2 font-medium'
       >
@@ -51,9 +53,17 @@ export function Hero() {
         className='absolute z-50 border-0'
       >
         <div className='container flex items-center justify-between mx-auto'>
-          <Typography color='white' className='text-lg font-bold'>
+          <Link href='/'>
+            <Image
+              src='/BLT icon White2.png'
+              width={50}
+              height={50}
+              alt='Black Lion Technologies'
+            />
+          </Link>
+          {/* <Typography color='white' className='text-lg font-bold'>
             Material Tailwind
-          </Typography>
+          </Typography> */}
           <ul className='items-center hidden gap-8 ml-10 lg:flex'>
             <NavItem>
               <RectangleStackIcon className='w-5 h-5' />
