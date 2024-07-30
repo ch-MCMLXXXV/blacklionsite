@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   Navbar,
-  Button,
   Collapse,
   IconButton,
   Typography,
@@ -55,9 +54,9 @@ export function Hero() {
         <div className='container flex items-center justify-between mx-auto'>
           <Link href='/'>
             <Image
-              src='/BLT icon White2.png'
-              width={50}
-              height={50}
+              src='/BLT logo White2.png'
+              width={150}
+              height={150}
               alt='Black Lion Technologies'
             />
           </Link>
@@ -82,12 +81,7 @@ export function Hero() {
               Docs
             </NavItem>
           </ul>
-          <div className='items-center hidden gap-4 lg:flex'>
-            <Button variant='text' color='white'>
-              Log in
-            </Button>
-            <Button color='white'>sign in</Button>
-          </div>
+
           <IconButton
             variant='text'
             color='white'
@@ -121,10 +115,6 @@ export function Hero() {
                 Docs
               </NavItem>
             </ul>
-            <div className='flex items-center gap-4 mt-6'>
-              <Button variant='text'>Log in</Button>
-              <Button color='gray'>sign in</Button>
-            </div>
           </div>
         </Collapse>
       </Navbar>
