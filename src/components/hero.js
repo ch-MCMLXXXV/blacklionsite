@@ -14,6 +14,8 @@ import {
   UserCircleIcon,
   CommandLineIcon,
   Squares2X2Icon,
+  HomeIcon,
+  InboxStackIcon,
 } from '@heroicons/react/24/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
@@ -64,22 +66,22 @@ export function Hero() {
             Material Tailwind
           </Typography> */}
           <ul className='items-center hidden gap-8 ml-10 lg:flex'>
-            <NavItem>
-              <RectangleStackIcon className='w-5 h-5' />
-              Pages
+            <NavItem href='/'>
+              <HomeIcon className='w-5 h-5' />
+              Home
             </NavItem>
-            <NavItem>
+            <NavItem href='#'>
               <UserCircleIcon className='w-5 h-5' />
-              Account
+              About Us
             </NavItem>
-            <NavItem>
-              <Squares2X2Icon className='w-5 h-5' />
-              Blocks
+            <NavItem href='#'>
+              <InboxStackIcon className='w-5 h-5' />
+              Contact
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <CommandLineIcon className='w-5 h-5' />
-              Docs
-            </NavItem>
+              Contact
+            </NavItem> */}
           </ul>
 
           <IconButton
@@ -98,27 +100,27 @@ export function Hero() {
         <Collapse open={open}>
           <div className='container px-6 py-5 mx-auto mt-4 bg-white rounded-lg'>
             <ul className='flex flex-col gap-4 text-gray-900'>
-              <NavItem>
+              {/* <NavItem>
                 <RectangleStackIcon className='w-5 h-5' />
                 Pages
-              </NavItem>
-              <NavItem>
+              </NavItem> */}
+              <NavItem href='#'>
                 <UserCircleIcon className='w-5 h-5' />
-                Account
+                About Us
               </NavItem>
-              <NavItem>
-                <Squares2X2Icon className='w-5 h-5' />
-                Blocks
+              <NavItem href='#'>
+                <InboxStackIcon className='w-5 h-5' />
+                Contact
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <CommandLineIcon className='w-5 h-5' />
                 Docs
-              </NavItem>
+              </NavItem> */}
             </ul>
           </div>
         </Collapse>
       </Navbar>
-      <div className="relative min-h-screen w-full bg-[url('https://www.material-tailwind.com/image/image-5.jpeg')] bg-cover bg-center bg-no-repeat">
+      <div className='relative w-full min-h-screen bg-center bg-no-repeat bg-cover bg-bham'>
         <div className='absolute inset-0 w-full h-full bg-black/50' />
         <div className='grid min-h-screen px-8'>
           <div className='container relative z-10 grid mx-auto my-auto text-center place-items-center'>
