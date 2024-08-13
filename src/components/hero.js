@@ -143,9 +143,9 @@ export function Hero() {
               color='white'
               className='max-w-2xl mb-10 italic'
             >
-              "Your Trusted Partner in Government Contracting:
+              &quot;Your Trusted Partner in Government Contracting:
               Comprehensive IT Solutions & Administrative Services for
-              Federal, State and Local Agencies"
+              Federal, State and Local Agencies&quot;
             </Typography>
           </div>
         </div>
