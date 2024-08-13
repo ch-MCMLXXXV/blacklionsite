@@ -124,28 +124,28 @@ export function Hero() {
         <div className='absolute inset-0 w-full h-full bg-black/50' />
         <div className='grid min-h-screen px-8'>
           <div className='container relative z-10 grid mx-auto my-auto text-center place-items-center'>
-            <Typography
+            {/* <Typography
               variant='h3'
               color='white'
               className='text-lg !leading-snug lg:text-2xl'
             >
               Pricing Plans
-            </Typography>
+            </Typography> */}
             <Typography
               variant='h1'
               color='white'
-              className='my-4 text-3xl !leading-snug lg:text-5xl'
+              className='my-4 text-3xl !leading-snug lg:text-5xl italic'
             >
-              Work with the rockets
+              Black Lion Technologies
             </Typography>
             <Typography
               variant='lead'
               color='white'
-              className='max-w-2xl mb-10'
+              className='max-w-2xl mb-10 italic'
             >
-              Wealth creation is an evolutionarily recent positive-sum
-              game. Status is an old zero-sum game. Those attacking
-              wealth creation are often just seeking status.
+              "Your Trusted Partner in Government Contracting:
+              Comprehensive IT Solutions & Administrative Services for
+              Federal, State and Local Agencies"
             </Typography>
           </div>
         </div>
