@@ -17,18 +17,18 @@ import {
 } from '@heroicons/react/24/solid';
 
 export function ContactSection13() {
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    await fetch('/__forms.html', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams(formData).toString(),
-    });
-    alert('Form submitted successfully!');
-  };
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.target);
+  //   await fetch('/__forms.html', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     body: new URLSearchParams(formData).toString(),
+  //   });
+  //   alert('Form submitted successfully!');
+  // };
   return (
     <section className='grid h-screen px-8 py-10'>
       <div className='container grid items-center grid-cols-1 mx-auto my-auto place-items-center gap-y-10 gap-x-28 lg:grid-cols-2'>
@@ -44,8 +44,8 @@ export function ContactSection13() {
               </Typography>
               <form
                 name='contact'
-                onSubmit={handleFormSubmit}
-                action='#'
+                method='POST'
+                data-netlify='true'
                 className='flex flex-col gap-6'
               >
                 <div className='grid grid-cols-2 gap-4'>
