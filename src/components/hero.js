@@ -70,18 +70,18 @@ export function Hero() {
               <HomeIcon className='w-5 h-5' />
               Home
             </NavItem>
-            <NavItem href='#'>
+            <NavItem href='#about'>
               <UserCircleIcon className='w-5 h-5' />
               About Us
             </NavItem>
-            <NavItem href='#'>
+            <NavItem href='#services'>
+              <CommandLineIcon className='w-5 h-5' />
+              Services
+            </NavItem>
+            <NavItem href='#contact'>
               <InboxStackIcon className='w-5 h-5' />
               Contact
             </NavItem>
-            {/* <NavItem>
-              <CommandLineIcon className='w-5 h-5' />
-              Contact
-            </NavItem> */}
           </ul>
 
           <IconButton
@@ -104,18 +104,18 @@ export function Hero() {
                 <RectangleStackIcon className='w-5 h-5' />
                 Pages
               </NavItem> */}
-              <NavItem href='#'>
+              <NavItem href='#about'>
                 <UserCircleIcon className='w-5 h-5' />
                 About Us
               </NavItem>
-              <NavItem href='#'>
+              <NavItem href='#services'>
+                <CommandLineIcon className='w-5 h-5' />
+                Services
+              </NavItem>
+              <NavItem href='#contact'>
                 <InboxStackIcon className='w-5 h-5' />
                 Contact
               </NavItem>
-              {/* <NavItem>
-                <CommandLineIcon className='w-5 h-5' />
-                Docs
-              </NavItem> */}
             </ul>
           </div>
         </Collapse>
@@ -136,7 +136,7 @@ export function Hero() {
               color='white'
               className='my-4 text-3xl !leading-snug lg:text-5xl italic'
             >
-              Black Lion Technologies
+              Black Lion Technologies LLC
             </Typography>
             <Typography
               variant='lead'

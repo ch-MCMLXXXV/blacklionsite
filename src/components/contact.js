@@ -17,6 +17,18 @@ import {
 } from '@heroicons/react/24/solid';
 
 export function ContactSection13() {
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    await fetch('/__forms.html', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams(formData).toString(),
+    });
+    alert('Form submitted successfully!');
+  };
   return (
     <section className='grid h-screen px-8 py-10'>
       <div className='container grid items-center grid-cols-1 mx-auto my-auto place-items-center gap-y-10 gap-x-28 lg:grid-cols-2'>
@@ -32,6 +44,7 @@ export function ContactSection13() {
               </Typography>
               <form
                 name='contact'
+                onSubmit={handleFormSubmit}
                 action='#'
                 className='flex flex-col gap-6'
               >
@@ -113,14 +126,13 @@ export function ContactSection13() {
             Get in Touch
           </Typography>
           <Typography className='mb-16 max-w-md !font-normal !text-gray-500'>
-            You need more information? Check what other persons are
-            saying about our product. They are very happy with their
-            purchase.
+            You need more information? Feel free to contact us at any
+            time.
           </Typography>
-          <div className='flex items-center gap-5'>
+          {/* <div className='flex items-center gap-5'>
             <PhoneIcon className='w-5 h-5' />
             <Typography variant='h6'>+1(424) 535 3523</Typography>
-          </div>
+          </div> */}
           <div className='flex items-center gap-5 my-4'>
             <EnvelopeIcon className='w-5 h-5' />
             <Typography variant='h6'>
