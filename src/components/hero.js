@@ -56,9 +56,9 @@ export function Hero() {
         <div className='container flex items-center justify-between mx-auto'>
           <Link href='/'>
             <Image
-              src='/BLT logo White2.png'
-              width={150}
-              height={150}
+              src='/BLT Icon White2.png'
+              width={50}
+              height={50}
               alt='Black Lion Technologies'
             />
           </Link>
@@ -131,15 +131,21 @@ export function Hero() {
             >
               Pricing Plans
             </Typography> */}
-            <Typography
+            {/* <Typography
               variant='h1'
               color='white'
               className='my-4 text-3xl !leading-snug lg:text-5xl italic'
             >
               Black Lion Technologies LLC
-            </Typography>
+            </Typography> */}
+            <Image
+              src='/BLT logo White2.png'
+              width={750}
+              height={750}
+              alt='Black Lion Technologies'
+            />
             <Typography
-              variant='lead'
+              variant='paragraph'
               color='white'
               className='max-w-2xl mb-10 italic'
             >
