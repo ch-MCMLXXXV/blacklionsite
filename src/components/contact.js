@@ -14,6 +14,7 @@ import {
   EnvelopeIcon,
   TicketIcon,
   PhoneIcon,
+  HomeModernIcon,
 } from '@heroicons/react/24/solid';
 
 export function ContactSection13() {
@@ -129,20 +130,23 @@ export function ContactSection13() {
             You need more information? Feel free to contact us at any
             time.
           </Typography>
-          {/* <div className='flex items-center gap-5'>
+          <div className='flex items-center gap-5 mb-3'>
+            <HomeModernIcon className='w-5 h-5' />
+            <Typography variant='h6'>
+              7403 Colony Park Dr. <br /> Birmingham, AL 35243 <br />{' '}
+              USA
+            </Typography>
+          </div>
+          <div className='flex items-center gap-5'>
             <PhoneIcon className='w-5 h-5' />
             <Typography variant='h6'>+1(424) 535 3523</Typography>
-          </div> */}
+          </div>
           <div className='flex items-center gap-5 my-4'>
             <EnvelopeIcon className='w-5 h-5' />
             <Typography variant='h6'>
               info@blackliontech.org
             </Typography>
           </div>
-          {/* <div className='flex items-center gap-5 mb-6'>
-            <TicketIcon className='w-5 h-5' />
-            <Typography variant='h6'>Open Support Ticket</Typography>
-          </div> */}
         </div>
       </div>
     </section>
