@@ -153,7 +153,7 @@ export function Hero() {
               />
             </motion.div>
             <motion.div
-              animate={{ x: [0, -50] }}
+              animate={{ x: [0, -15] }}
               transition={{
                 ease: 'easeOut',
                 duration: 4,
