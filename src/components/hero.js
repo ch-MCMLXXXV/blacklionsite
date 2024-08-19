@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { delay, motion, stagger } from 'framer-motion';
 import {
   Navbar,
   Collapse,
@@ -138,21 +139,39 @@ export function Hero() {
             >
               Black Lion Technologies LLC
             </Typography> */}
-            <Image
-              src='/BLT logo White2.png'
-              width={750}
-              height={750}
-              alt='Black Lion Technologies'
-            />
-            <Typography
-              variant='paragraph'
-              color='white'
-              className='max-w-2xl mb-10 italic'
+            <motion.div
+              animate={{ x: -75 }}
+              transition={{ ease: 'easeOut', duration: 1.5 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
             >
-              &quot;Your Trusted Partner in Government Contracting:
-              Comprehensive IT Solutions & Administrative Services for
-              Federal, State and Local Agencies&quot;
-            </Typography>
+              <Image
+                src='/BLT logo White2.png'
+                width={750}
+                height={750}
+                alt='Black Lion Technologies'
+              />
+            </motion.div>
+            <motion.div
+              animate={{ x: [0, -50] }}
+              transition={{
+                ease: 'easeOut',
+                duration: 4,
+                delay: 1,
+              }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+            >
+              <Typography
+                variant='paragraph'
+                color='white'
+                className='max-w-2xl mb-10 italic'
+              >
+                &quot;Your Trusted Partner in Government Contracting:
+                Comprehensive IT Solutions & Administrative Services
+                for Federal, State and Local Agencies&quot;
+              </Typography>
+            </motion.div>
           </div>
         </div>
       </div>

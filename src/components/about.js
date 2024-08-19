@@ -1,13 +1,36 @@
 'use client';
-
+import React, { useRef, useEffect } from 'react';
 import { Typography, Button } from '@material-tailwind/react';
 import Image from 'next/image';
+import {
+  motion,
+  useInView,
+  useAnimation,
+  easeIn,
+} from 'framer-motion';
 
-export function ContentSection5() {
+export function ContentSection5({ children }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start({ opacity: 1, y: 0 });
+    }
+  }, [isInView, mainControls]);
   return (
     <section className='grid min-h-screen px-8 py-10'>
-      <div className='grid items-center gap-10 mx-auto my-auto max-w-7xl place-items-center lg:grid-cols-2'>
-        <div className='lg:max-w-md'>
+      <div
+        ref={ref}
+        className='grid items-center gap-10 mx-auto my-auto max-w-7xl place-items-center lg:grid-cols-2'
+      >
+        <motion.div
+          animate={mainControls}
+          transition={{ duration: 1, delay: 0.75 }}
+          initial={{ y: 75, opacity: 0 }}
+          className='lg:max-w-md'
+        >
           <Typography
             variant='h2'
             color='blue-gray'
@@ -47,7 +70,7 @@ export function ContentSection5() {
             of natural reasons, there&apos;s huge variety of the state
             of the ice.
           </Typography> */}
-        </div>
+        </motion.div>
         <div>
           <Image
             src='/BLT Icon.png'
