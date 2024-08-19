@@ -140,7 +140,7 @@ export function Hero() {
               Black Lion Technologies LLC
             </Typography> */}
             <motion.div
-              animate={{ x: -50 }}
+              animate={{ x: -25 }}
               transition={{ ease: 'easeOut', duration: 1.5 }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
