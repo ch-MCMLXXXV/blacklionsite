@@ -139,7 +139,7 @@ export function ContactSection13() {
           </div>
           <div className='flex items-center gap-5'>
             <PhoneIcon className='w-5 h-5' />
-            <Typography variant='h6'>+1(424) 535 3523</Typography>
+            <Typography variant='h6'>+1(205) 725 0690</Typography>
           </div>
           <div className='flex items-center gap-5 my-4'>
             <EnvelopeIcon className='w-5 h-5' />
