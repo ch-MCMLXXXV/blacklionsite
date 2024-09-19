@@ -20,7 +20,7 @@ export function Footer15() {
                 <FaXTwitter className='text-xl text-gray-500 transition-colors hover:text-blue-gray-900' />
               </IconButton>
             </a>
-            <a href='#buttons-with-link'>
+            <a href='https://www.instagram.com/blacklion_tech/'>
               <IconButton variant='text'>
                 <FaInstagram className='text-xl text-gray-500 transition-colors hover:text-blue-gray-900' />
               </IconButton>

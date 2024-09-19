@@ -47,8 +47,21 @@ export function ContactSection13() {
                 name='contact'
                 method='POST'
                 data-netlify='true'
+                netlify-honepot='bot-field'
                 className='flex flex-col gap-6'
               >
+                {/* Hidden field for Netlify */}
+                <input
+                  type='hidden'
+                  name='form-name'
+                  value='contact'
+                />
+                {/* Honeypot field for spam prevention */}
+                <p className='hidden'>
+                  <label>
+                    Don’t fill this out: <input name='bot-field' />
+                  </label>
+                </p>
                 <div className='grid grid-cols-2 gap-4'>
                   <Input
                     color='gray'
@@ -111,6 +124,7 @@ export function ContactSection13() {
                   color='gray'
                   className='mt-4'
                   fullWidth
+                  type='submit'
                 >
                   send message
                 </Button>
@@ -126,22 +140,22 @@ export function ContactSection13() {
           >
             Get in Touch
           </Typography>
-          <Typography className='mb-16 max-w-md !font-normal !text-gray-500'>
+          <Typography className='mb-12 max-w-md !font-normal !text-gray-500'>
             You need more information? Feel free to contact us at any
             time.
           </Typography>
-          <div className='flex items-center gap-5 mb-3'>
+          <div className='flex items-center gap-5 mb-2'>
             <HomeModernIcon className='w-5 h-5' />
             <Typography variant='h6'>
               7403 Colony Park Dr. <br /> Birmingham, AL 35243 <br />{' '}
               USA
             </Typography>
           </div>
-          <div className='flex items-center gap-5'>
+          <div className='flex items-center gap-5 mb-2'>
             <PhoneIcon className='w-5 h-5' />
             <Typography variant='h6'>+1(205) 725 0690</Typography>
           </div>
-          <div className='flex items-center gap-5 my-4'>
+          <div className='flex items-center gap-5'>
             <EnvelopeIcon className='w-5 h-5' />
             <Typography variant='h6'>
               info@blackliontech.org
