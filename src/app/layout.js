@@ -6,9 +6,10 @@ import Footer from '../components/footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Black Lion Tech',
+  title:
+    'Black Lion Tech | Affordable IT Solutions for Consumers,Businesses & Federal Institutions',
   description:
-    'Black Lion Technologies is a pioneering tech company focused on innovating and delivering cutting-edge solutions',
+    'Offering IT procurement and cybersecurity solutions for both consumers, businesses & federal institutions.',
 };
 
 export default function RootLayout({ children }) {
