@@ -17,6 +17,7 @@ import {
   Squares2X2Icon,
   HomeIcon,
   InboxStackIcon,
+  BuildingStorefrontIcon,
 } from '@heroicons/react/24/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
@@ -79,6 +80,10 @@ export function Hero() {
               <CommandLineIcon className='w-5 h-5' />
               Services
             </NavItem>
+            {/* <NavItem href='https://shop.blackliontech.org/'>
+              <BuildingStorefrontIcon className='w-5 h-5' />
+              Store
+            </NavItem> */}
             <NavItem href='#contact'>
               <InboxStackIcon className='w-5 h-5' />
               Contact
@@ -113,6 +118,10 @@ export function Hero() {
                 <CommandLineIcon className='w-5 h-5' />
                 Services
               </NavItem>
+              {/* <NavItem href='https://shop.blackliontech.org/'>
+                <BuildingStorefrontIcon className='w-5 h-5' />
+                Store
+              </NavItem> */}
               <NavItem href='#contact'>
                 <InboxStackIcon className='w-5 h-5' />
                 Contact
@@ -167,9 +176,10 @@ export function Hero() {
                 color='white'
                 className='max-w-2xl mb-10 italic'
               >
-                &quot;Your Trusted Partner in Government Contracting:
-                Comprehensive IT Solutions & Administrative Services
-                for Federal, State and Local Agencies&quot;
+                &quot;Your Trusted Partner in Government Contracting,
+                Consumer, and Business IT Solutions: Comprehensive IT
+                Solutions & Electronics Retailer and Administrative
+                Services for Federal, State, and Local Agencies.&quot;
               </Typography>
             </motion.div>
           </div>
