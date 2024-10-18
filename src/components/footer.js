@@ -25,7 +25,7 @@ export function Footer15() {
                 <FaInstagram className='text-xl text-gray-500 transition-colors hover:text-blue-gray-900' />
               </IconButton>
             </a>
-            <a href='#buttons-with-link'>
+            <a href='https://www.facebook.com/profile.php?viewas=100000686899395&id=61567353446045'>
               <IconButton variant='text'>
                 <FaFacebook className='text-xl text-gray-500 transition-colors hover:text-blue-gray-900' />
               </IconButton>
