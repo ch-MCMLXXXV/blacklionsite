@@ -80,10 +80,10 @@ export function Hero() {
               <CommandLineIcon className='w-5 h-5' />
               Services
             </NavItem>
-            {/* <NavItem href='https://shop.blackliontech.org/'>
+            <NavItem href='https://shop.blackliontech.org/'>
               <BuildingStorefrontIcon className='w-5 h-5' />
               Store
-            </NavItem> */}
+            </NavItem>
             <NavItem href='#contact'>
               <InboxStackIcon className='w-5 h-5' />
               Contact
@@ -118,10 +118,10 @@ export function Hero() {
                 <CommandLineIcon className='w-5 h-5' />
                 Services
               </NavItem>
-              {/* <NavItem href='https://shop.blackliontech.org/'>
+              <NavItem href='https://shop.blackliontech.org/'>
                 <BuildingStorefrontIcon className='w-5 h-5' />
                 Store
-              </NavItem> */}
+              </NavItem>
               <NavItem href='#contact'>
                 <InboxStackIcon className='w-5 h-5' />
                 Contact
