@@ -3,49 +3,40 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { delay, motion, stagger } from 'framer-motion';
-import {
-  Navbar,
-  Collapse,
-  IconButton,
-  Typography,
-} from '@material-tailwind/react';
-import {
-  RectangleStackIcon,
-  UserCircleIcon,
-  CommandLineIcon,
-  Squares2X2Icon,
-  HomeIcon,
-  InboxStackIcon,
-  BuildingStorefrontIcon,
-} from '@heroicons/react/24/solid';
+import { motion } from 'framer-motion';
+import { Navbar, Collapse, IconButton } from '@material-tailwind/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-function NavItem({ href, children }) {
+function NavLink({ href, children, onClick }) {
   return (
-    <li>
-      <Typography
-        as='a'
-        href={href}
-        variant='paragraph'
-        className='flex items-center gap-2 font-medium'
-      >
-        {children}
-      </Typography>
-    </li>
+    <a
+      href={href}
+      onClick={onClick}
+      className='text-white/80 hover:text-gold font-medium text-sm tracking-widest uppercase transition-colors duration-200'
+    >
+      {children}
+    </a>
   );
 }
 
 export function Hero() {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen((cur) => !cur);
+  const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
-    window.addEventListener(
-      'resize',
-      () => window.innerWidth >= 960 && setOpen(false)
-    );
+    const handleScroll = () => setScrolled(window.scrollY > 80);
+    const handleResize = () => {
+      if (window.innerWidth >= 960) setOpen(false);
+    };
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  const closeMenu = () => setOpen(false);
 
   return (
     <>
@@ -53,47 +44,50 @@ export function Hero() {
         fullWidth
         shadow={false}
         color='transparent'
-        className='absolute z-50 border-0'
+        className={`fixed z-50 border-0 transition-all duration-300 ${
+          scrolled
+            ? '!bg-navy/95 backdrop-blur-md shadow-xl shadow-navy/40'
+            : '!bg-transparent'
+        }`}
       >
-        <div className='container flex items-center justify-between mx-auto'>
+        <div className='container flex items-center justify-between mx-auto py-2 px-4'>
           <Link href='/'>
             <Image
               src='/BLT Icon White2.png'
-              width={50}
-              height={50}
+              width={44}
+              height={44}
               alt='Black Lion Technologies'
             />
           </Link>
-          {/* <Typography color='white' className='text-lg font-bold'>
-            Material Tailwind
-          </Typography> */}
-          <ul className='items-center hidden gap-8 ml-10 lg:flex'>
-            <NavItem href='/'>
-              <HomeIcon className='w-5 h-5' />
-              Home
-            </NavItem>
-            <NavItem href='#about'>
-              <UserCircleIcon className='w-5 h-5' />
-              About Us
-            </NavItem>
-            <NavItem href='#services'>
-              <CommandLineIcon className='w-5 h-5' />
-              Services
-            </NavItem>
-            <NavItem href='https://shop.blackliontech.org/'>
-              <BuildingStorefrontIcon className='w-5 h-5' />
-              Store
-            </NavItem>
-            <NavItem href='#contact'>
-              <InboxStackIcon className='w-5 h-5' />
-              Contact
-            </NavItem>
+
+          {/* Desktop nav */}
+          <ul className='items-center hidden gap-10 lg:flex'>
+            <li>
+              <NavLink href='/'>Home</NavLink>
+            </li>
+            <li>
+              <NavLink href='#about'>About</NavLink>
+            </li>
+            <li>
+              <NavLink href='#services'>Services</NavLink>
+            </li>
+            <li>
+              <NavLink href='#contact'>Contact</NavLink>
+            </li>
           </ul>
 
+          <a
+            href='#contact'
+            className='hidden lg:inline-flex items-center px-5 py-2.5 rounded-full bg-gold text-navy text-sm font-semibold tracking-wide hover:bg-gold-light transition-all duration-200'
+          >
+            Get In Touch
+          </a>
+
+          {/* Mobile hamburger */}
           <IconButton
             variant='text'
             color='white'
-            onClick={handleOpen}
+            onClick={() => setOpen((cur) => !cur)}
             className='inline-block ml-auto lg:hidden'
           >
             {open ? (
@@ -103,87 +97,125 @@ export function Hero() {
             )}
           </IconButton>
         </div>
+
+        {/* Mobile menu */}
         <Collapse open={open}>
-          <div className='container px-6 py-5 mx-auto mt-4 bg-white rounded-lg'>
-            <ul className='flex flex-col gap-4 text-gray-900'>
-              {/* <NavItem>
-                <RectangleStackIcon className='w-5 h-5' />
-                Pages
-              </NavItem> */}
-              <NavItem href='#about'>
-                <UserCircleIcon className='w-5 h-5' />
-                About Us
-              </NavItem>
-              <NavItem href='#services'>
-                <CommandLineIcon className='w-5 h-5' />
-                Services
-              </NavItem>
-              <NavItem href='https://shop.blackliontech.org/'>
-                <BuildingStorefrontIcon className='w-5 h-5' />
-                Store
-              </NavItem>
-              <NavItem href='#contact'>
-                <InboxStackIcon className='w-5 h-5' />
-                Contact
-              </NavItem>
+          <div className='container mx-auto mt-2 px-6 py-6 bg-navy rounded-xl shadow-2xl'>
+            <ul className='flex flex-col gap-5'>
+              <li>
+                <NavLink href='#about' onClick={closeMenu}>
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink href='#services' onClick={closeMenu}>
+                  Services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink href='#contact' onClick={closeMenu}>
+                  Contact
+                </NavLink>
+              </li>
+              <li className='pt-2 border-t border-white/10'>
+                <a
+                  href='#contact'
+                  onClick={closeMenu}
+                  className='inline-flex items-center px-5 py-2.5 rounded-full bg-gold text-navy text-sm font-semibold'
+                >
+                  Get In Touch
+                </a>
+              </li>
             </ul>
           </div>
         </Collapse>
       </Navbar>
+
+      {/* Hero Section */}
       <div className='relative w-full min-h-screen bg-center bg-no-repeat bg-cover bg-bham'>
-        <div className='absolute inset-0 w-full h-full bg-black/50' />
-        <div className='grid min-h-screen px-8'>
-          <div className='container relative z-10 grid mx-auto my-auto text-center place-items-center'>
-            {/* <Typography
-              variant='h3'
-              color='white'
-              className='text-lg !leading-snug lg:text-2xl'
+        {/* Gradient overlay */}
+        <div className='absolute inset-0 bg-gradient-to-b from-navy/90 via-navy/65 to-navy/90' />
+
+        <div className='relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center pt-20'>
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className='mb-6'
+          >
+            <Image
+              src='/BLT logo White2.png'
+              width={260}
+              height={260}
+              alt='Black Lion Technologies'
+              className='mx-auto drop-shadow-2xl'
+            />
+          </motion.div>
+
+          {/* Eyebrow + Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
+            className='max-w-3xl'
+          >
+            <div className='flex items-center justify-center gap-3 mb-5'>
+              <div className='h-px w-10 bg-gold/60' />
+              <span className='text-gold text-xs font-semibold tracking-widest uppercase'>
+                Government Technology Solutions
+              </span>
+              <div className='h-px w-10 bg-gold/60' />
+            </div>
+            <h1 className='text-4xl lg:text-6xl font-bold text-white mb-5 leading-tight'>
+              Trusted IT Solutions for{' '}
+              <span className='text-gold'>Government Agencies</span>
+            </h1>
+            <p className='text-base lg:text-lg text-white/65 mb-10 max-w-2xl mx-auto leading-relaxed'>
+              Comprehensive IT procurement, cybersecurity, and administrative
+              staffing services for Federal, State, and Local agencies
+              nationwide.
+            </p>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.9 }}
+            className='flex flex-col sm:flex-row gap-4 justify-center'
+          >
+            <a
+              href='#contact'
+              className='px-8 py-4 rounded-full bg-gold text-navy font-bold text-sm tracking-widest uppercase hover:bg-gold-light transition-all duration-200 shadow-lg'
             >
-              Pricing Plans
-            </Typography> */}
-            {/* <Typography
-              variant='h1'
-              color='white'
-              className='my-4 text-3xl !leading-snug lg:text-5xl italic'
+              Contact Us
+            </a>
+            <a
+              href='#services'
+              className='px-8 py-4 rounded-full border-2 border-white/40 text-white font-bold text-sm tracking-widest uppercase hover:bg-white/10 hover:border-white/70 transition-all duration-200'
             >
-              Black Lion Technologies LLC
-            </Typography> */}
-            <motion.div
-              animate={{ x: -25 }}
-              transition={{ ease: 'easeOut', duration: 1.5 }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-            >
-              <Image
-                src='/BLT logo White2.png'
-                width={750}
-                height={750}
-                alt='Black Lion Technologies'
-              />
-            </motion.div>
-            <motion.div
-              animate={{ x: [0, -15] }}
-              transition={{
-                ease: 'easeOut',
-                duration: 4,
-                delay: 1,
-              }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-            >
-              <Typography
-                variant='paragraph'
-                color='white'
-                className='max-w-2xl mb-10 italic'
-              >
-                &quot;Your Trusted Partner in Government Contracting,
-                Consumer, and Business IT Solutions: Comprehensive IT
-                Solutions & Electronics Retailer and Administrative
-                Services for Federal, State, and Local Agencies.&quot;
-              </Typography>
-            </motion.div>
-          </div>
+              Our Services
+            </a>
+          </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+          className='absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2'
+        >
+          <span className='text-white/40 text-xs tracking-widest uppercase'>
+            Scroll
+          </span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className='w-px h-10 bg-gradient-to-b from-white/40 to-transparent'
+          />
+        </motion.div>
       </div>
     </>
   );

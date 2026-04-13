@@ -1,12 +1,13 @@
 <html>
   <head></head>
   <body>
-    <form name="contact" data-netlify="true" hidden>
-      <input type="hidden" name="form-name" value="feedback" />
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="bot-field" type="text" />
       <input name="first-name" type="text" />
       <input name="last-name" type="text" />
-      <input name="email" type="text" />
-      <input name="phone" type="text" />
+      <input name="email" type="email" />
+      <input name="phone" type="tel" />
       <input name="message" type="text" />
     </form>
   </body>
