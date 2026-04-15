@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['www.material-tailwind.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.material-tailwind.com',
+      },
+    ],
   },
 };
 

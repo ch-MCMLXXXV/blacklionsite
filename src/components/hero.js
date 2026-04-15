@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -20,10 +20,10 @@ function NavLink({ href, children, onClick }) {
 }
 
 export function Hero() {
-  const [open, setOpen] = React.useState(false);
-  const [scrolled, setScrolled] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
     const handleResize = () => {
       if (window.innerWidth >= 960) setOpen(false);
@@ -51,12 +51,13 @@ export function Hero() {
         }`}
       >
         <div className='container flex items-center justify-between mx-auto py-2 px-4'>
-          <Link href='/'>
+          <Link href='/' aria-label='Black Lion Technologies — home'>
             <Image
               src='/BLT Icon White2.png'
               width={44}
               height={44}
-              alt='Black Lion Technologies'
+              alt='Black Lion Technologies logo'
+              priority
             />
           </Link>
 
@@ -88,6 +89,8 @@ export function Hero() {
             variant='text'
             color='white'
             onClick={() => setOpen((cur) => !cur)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
             className='inline-block ml-auto lg:hidden'
           >
             {open ? (
@@ -100,7 +103,10 @@ export function Hero() {
 
         {/* Mobile menu */}
         <Collapse open={open}>
-          <div className='container mx-auto mt-2 px-6 py-6 bg-navy rounded-xl shadow-2xl'>
+          <nav
+            aria-label='Mobile navigation'
+            className='container mx-auto mt-2 px-6 py-6 bg-navy rounded-xl shadow-2xl'
+          >
             <ul className='flex flex-col gap-5'>
               <li>
                 <NavLink href='#about' onClick={closeMenu}>
@@ -127,7 +133,7 @@ export function Hero() {
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
         </Collapse>
       </Navbar>
 
@@ -149,6 +155,7 @@ export function Hero() {
               width={260}
               height={260}
               alt='Black Lion Technologies'
+              priority
               className='mx-auto drop-shadow-2xl'
             />
           </motion.div>
@@ -205,6 +212,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
+          aria-hidden='true'
           className='absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2'
         >
           <span className='text-white/40 text-xs tracking-widest uppercase'>

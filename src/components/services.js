@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   FingerPrintIcon,
   RectangleGroupIcon,
@@ -42,24 +41,19 @@ const services = [
   },
 ];
 
+const viewport = { once: true, margin: '-80px' };
+
 function ServiceItem({ service }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) controls.start({ opacity: 1, y: 0 });
-  }, [isInView, controls]);
-
   const { icon: Icon, title, description, bullets, image, imageAlt, imageLeft } =
     service;
 
   return (
-    <div ref={ref} className='grid items-center gap-12 lg:grid-cols-2'>
+    <div className='grid items-center gap-12 lg:grid-cols-2'>
       {/* Image */}
       <motion.div
-        animate={controls}
         initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
         transition={{ duration: 0.8 }}
         className={!imageLeft ? 'lg:order-2' : ''}
       >
@@ -77,22 +71,26 @@ function ServiceItem({ service }) {
 
       {/* Content */}
       <motion.div
-        animate={controls}
         initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
         transition={{ duration: 0.8, delay: 0.15 }}
         className={!imageLeft ? 'lg:order-1' : ''}
       >
         <div className='inline-flex p-3 rounded-xl bg-navy mb-5'>
-          <Icon className='w-6 h-6 text-gold' />
+          <Icon className='w-6 h-6 text-gold' aria-hidden='true' />
         </div>
         <h3 className='text-2xl lg:text-3xl font-bold text-navy mb-4 leading-snug'>
           {title}
         </h3>
         <p className='text-gray-500 leading-relaxed mb-7'>{description}</p>
         <ul className='flex flex-col gap-3'>
-          {bullets.map((bullet, i) => (
-            <li key={i} className='flex items-start gap-3'>
-              <CheckCircleIcon className='w-5 h-5 text-gold shrink-0 mt-0.5' />
+          {bullets.map((bullet) => (
+            <li key={bullet} className='flex items-start gap-3'>
+              <CheckCircleIcon
+                className='w-5 h-5 text-gold shrink-0 mt-0.5'
+                aria-hidden='true'
+              />
               <span className='text-gray-600 text-sm leading-relaxed'>
                 {bullet}
               </span>

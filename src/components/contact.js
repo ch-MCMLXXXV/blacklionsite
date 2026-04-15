@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Input, Textarea } from '@material-tailwind/react';
 import {
   EnvelopeIcon,
@@ -8,6 +8,7 @@ import {
   MapPinIcon,
   CheckCircleIcon,
   ClockIcon,
+  ExclamationTriangleIcon,
 } from '@heroicons/react/24/solid';
 
 const contactInfo = [
@@ -32,19 +33,29 @@ const contactInfo = [
 
 export function ContactSection13() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
+    setSending(true);
     const formData = new FormData(e.target);
     try {
-      await fetch('/', {
+      const res = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData).toString(),
       });
-      setSubmitted(true);
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
     } catch {
-      e.target.submit();
+      setError(true);
+    } finally {
+      setSending(false);
     }
   };
 
@@ -93,6 +104,7 @@ export function ContactSection13() {
                 netlify-honeypot='bot-field'
                 onSubmit={handleSubmit}
                 className='flex flex-col gap-5'
+                aria-label='Contact form'
               >
                 <input type='hidden' name='form-name' value='contact' />
                 <p className='hidden'>
@@ -100,6 +112,7 @@ export function ContactSection13() {
                     Don&apos;t fill this out: <input name='bot-field' />
                   </label>
                 </p>
+
                 <div className='grid grid-cols-2 gap-4'>
                   <Input
                     color='gray'
@@ -141,11 +154,30 @@ export function ContactSection13() {
                   name='message'
                   required
                 />
+
+                {error && (
+                  <div className='flex items-start gap-3 p-4 rounded-xl bg-red-50 border border-red-100'>
+                    <ExclamationTriangleIcon className='w-5 h-5 text-red-500 shrink-0 mt-0.5' />
+                    <p className='text-red-700 text-sm leading-relaxed'>
+                      Something went wrong. Please try again or reach us
+                      directly at{' '}
+                      <a
+                        href='mailto:info@blackliontech.org'
+                        className='underline font-medium'
+                      >
+                        info@blackliontech.org
+                      </a>
+                      .
+                    </p>
+                  </div>
+                )}
+
                 <button
                   type='submit'
-                  className='w-full py-4 rounded-xl bg-navy text-white font-semibold text-sm tracking-widest uppercase hover:bg-navy-light transition-colors duration-200 shadow-lg shadow-navy/20 mt-1'
+                  disabled={sending}
+                  className='w-full py-4 rounded-xl bg-navy text-white font-semibold text-sm tracking-widest uppercase hover:bg-navy-light disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-200 shadow-lg shadow-navy/20 mt-1'
                 >
-                  Send Message
+                  {sending ? 'Sending…' : 'Send Message'}
                 </button>
               </form>
             )}
@@ -169,7 +201,7 @@ export function ContactSection13() {
                 className='flex items-start gap-5 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-300'
               >
                 <div className='p-3 rounded-xl bg-navy shrink-0'>
-                  <Icon className='w-5 h-5 text-gold' />
+                  <Icon className='w-5 h-5 text-gold' aria-hidden='true' />
                 </div>
                 <div>
                   <p className='text-xs font-semibold text-navy uppercase tracking-widest mb-1'>
@@ -194,7 +226,7 @@ export function ContactSection13() {
             {/* Business hours */}
             <div className='p-6 rounded-2xl bg-navy text-white'>
               <div className='flex items-center gap-2 mb-4'>
-                <ClockIcon className='w-4 h-4 text-gold' />
+                <ClockIcon className='w-4 h-4 text-gold' aria-hidden='true' />
                 <p className='text-xs font-semibold text-gold uppercase tracking-widest'>
                   Business Hours
                 </p>

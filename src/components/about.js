@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ShieldCheckIcon,
   ComputerDesktopIcon,
@@ -27,24 +26,17 @@ const highlights = [
   },
 ];
 
+const viewport = { once: true, margin: '-60px' };
+
 export function ContentSection5() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start({ opacity: 1, y: 0 });
-    }
-  }, [isInView, controls]);
-
   return (
     <section className='py-24 px-6 bg-white'>
-      <div ref={ref} className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto'>
         {/* Section label */}
         <motion.div
-          animate={controls}
           initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
           transition={{ duration: 0.7 }}
           className='text-center mb-16'
         >
@@ -64,9 +56,10 @@ export function ContentSection5() {
         <div className='grid items-center gap-16 lg:grid-cols-2 mb-20'>
           {/* Text */}
           <motion.div
-            animate={controls}
             initial={{ opacity: 0, y: 40 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.8 }}
           >
             <p className='text-lg text-gray-600 leading-relaxed mb-6'>
               Black Lion Technologies LLC is a premier provider of IT equipment
@@ -92,9 +85,10 @@ export function ContentSection5() {
 
           {/* Logo graphic */}
           <motion.div
-            animate={controls}
             initial={{ opacity: 0, y: 40 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.8, delay: 0.15 }}
             className='flex justify-center'
           >
             <div className='relative'>
@@ -107,7 +101,6 @@ export function ContentSection5() {
                   className='object-contain'
                 />
               </div>
-              {/* Decorative ring */}
               <div className='absolute -inset-3 rounded-full border-2 border-gold/25' />
               <div className='absolute -inset-6 rounded-full border border-gold/10' />
             </div>
@@ -119,13 +112,14 @@ export function ContentSection5() {
           {highlights.map(({ icon: Icon, title, desc }, i) => (
             <motion.div
               key={title}
-              animate={controls}
               initial={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.45 + i * 0.12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewport}
+              transition={{ duration: 0.6, delay: i * 0.12 }}
               className='flex flex-col items-start p-7 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg hover:border-gray-200 transition-all duration-300'
             >
               <div className='p-3 rounded-xl bg-navy mb-5'>
-                <Icon className='w-6 h-6 text-gold' />
+                <Icon className='w-6 h-6 text-gold' aria-hidden='true' />
               </div>
               <h3 className='text-base font-bold text-navy mb-2'>{title}</h3>
               <p className='text-gray-500 text-sm leading-relaxed'>{desc}</p>
